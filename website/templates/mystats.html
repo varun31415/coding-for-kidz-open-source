@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>My progress - Coding for Kidz</title>
+    <style>
+        .box {
+            width: 90%;
+            border-radius: 1rem;
+            border: 1px solid rgba(0,0,0,0.125);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .heading-h1 {
+            margin-top: 20px;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .heading {
+            margin-top: 20px;
+            font-size: 60px;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .small-box {
+            border: 1px solid rgba(0,0,0,0.125);
+            width: 23%;
+            padding: 20px;
+            border-radius: .5rem;
+            font-size: 30px;
+            margin: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .right {
+            left: 45%;
+        }
+        .left {
+            right: 45%;
+        }
+        #profile-big {
+            object-fit:cover;
+            border-radius: 50%;
+            width: 35vw;
+            height: 35vw;
+            display:block;
+        }
+        #my_account {
+            border-bottom: 2.5px solid rgba(0,0,255,0.7);
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <center>
+        <div class="box">
+            <h1 class="heading-h1">Your stats</h1>
+            <div class="small-box left">{{ articles }} Articles written</div>
+            <img id="profile-big" src="{{ User_profile.query.filter_by(user_id=current_user.id).first().image }}">
+            <div class="small-box right">{{ progress }} progress</div>
+            <div class="small-box left">{{ featured }} Articles Featured</div>
+        </div>
+        <br><br><br><br>
+    </center>
+{% endblock %}

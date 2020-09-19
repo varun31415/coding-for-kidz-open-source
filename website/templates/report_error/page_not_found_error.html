@@ -1,0 +1,14 @@
+{% extends base.html %}
+{% block head %}
+    <title>Report Page not Found Error - Coding for Kidz</title>
+{% endblock %}
+{% block body %}
+    <h1>Report Page not Found Error</h1>
+    <form>
+        <br><label for="describe-the-error">Describe the error</label><br>
+        <br><input type="text" name="describe-the-error" id="describe-the-error" required><br>
+        <br><label for="what-is-the-url">What is the url?</label><br>
+        <br><input type="text" name="what-is-the-url" id="what-is-the-url" required><br>
+        <br><input type="submit" value="Submit"><br>
+    </form>
+{% endblock %}

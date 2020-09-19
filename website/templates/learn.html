@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Learn - Coding for kidz</title>
+    <link rel="stylesheet" href="../static/css/cards.css">
+    <style>
+        #learn {
+        background-color: green;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    {% if g.user %}
+        <h2>For you</h2>
+    {% else %}
+    {% endif %}
+    <h1 class="heading-h1">Courses</h1>
+    {% for course in lessons %}
+          <div class="col-md-4">
+                <a href="/card/{{ course.lesson_id }}/" style="color: black;">
+                    <div class="card">
+                        <img src="../static/img/coding_langs.jpeg" class="card-img-top" alt="Card Image Top">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ course.title }}</h4>
+                            <div class="card-subtitle">{{ course.subtitle }} </div>
+                        </div>
+                    </div>
+                </a>
+          </div>
+    {% endfor %}
+    <button>Show more Courses</button>
+{#    TODO: make all Card in line 3 colums#}
+{#    TODO: Fix the show more lessons button#}
+{% endblock %}

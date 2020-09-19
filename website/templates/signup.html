@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Sign up - Coding for Kidz</title>
+    <style>
+        #sign-up {
+            background-color: green;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1 class="heading-h1">Sign up</h1>
+    <form method="POST" autocomplete="on">
+        <div>
+            <label for="username">Username</label>
+            <input id="username" value="{{username}}" name="username" required onfocus="this.removeAttribute('readonly');">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" value="{{password}}" required onfocus="this.removeAttribute('readonly');">
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password</label>
+            <input id="confirm-password" type="password" value="{{confirm}}" name="confirm-password" required onfocus="this.removeAttribute('readonly');">
+        </div>
+        <div>
+            <label for="about_textbox">Enter a description of yourself</label>
+            <textarea id="about_textbox" name="about" rows="3" contenteditable onfocus="this.removeAttribute('readonly');">{{ about }}</textarea>
+        </div>
+        <div>
+            <label for="email">email(optional)</label>
+            <input id="email" type="email">
+        </div>
+        <button id="submit">Create your account</button>
+        <span id="error">{{error}}</span>
+    </form>
+{% endblock %}

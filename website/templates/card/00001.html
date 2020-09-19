@@ -1,0 +1,33 @@
+{% extends 'card/card_temp.html' %}
+{% block head %}
+    <title>Programming Fundamentals - Coding for kids</title>
+{% endblock %}
+{% block body %}
+    <img src="../../static/img/code.jpg" alt="Card Image Top">
+    <h1 class="heading-h1">Programming Fundamentals</h1>
+    <p>Programming is how to talk to a computer.</p>
+{% endblock %}
+
+{% block form %}
+    <div class="question">
+        <p>What are programming languages?</p>
+        <div class="choice">
+            <br><label for="What are programming languages" >1. Odd languages that penguins talk in</label>
+            <input type="radio" id="What are programming languages" name="wrong1" checked><br>
+        </div>
+
+        <div class="choice">
+            <br><label for="What are programming languages">2. "Languages" that can communicate with computers.</label>
+            <input type="radio" id="What are programming languages" name="correct"><br>
+        </div>
+        <div class="choice">
+            <br><label for="What are programming languages">3. "Languages" that can communicate with houses.</label>
+            <input type="radio" id="What are programming languages" name="correct"><br>
+        </div>
+        <div class="choice">
+            <br><label for="What are programming languages">4. Elephant speak.</label>
+            <input type="radio" id="What are programming languages" name="correct"><br>
+        </div>
+    </div>
+    <br><input type="submit" value="Submit"><br>
+{% endblock %}

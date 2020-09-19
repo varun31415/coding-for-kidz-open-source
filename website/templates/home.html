@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Home - Coding for kidz</title>
+    <style>
+        #main {
+            background-color: green; 
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1 class="heading-h1">Coding for Kidz</h1>
+    <p>This is the home page of the Coding for Kidz website, a fun interactive website that teaches kids coding.</p>
+    {% if current_user.is_authenticated %}
+    <h2>For you</h2>
+<!--    {% for item in for_you %}-->
+<!--    {% endfor %}-->
+    {% else %}
+    {% endif %}
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+{% endblock %}

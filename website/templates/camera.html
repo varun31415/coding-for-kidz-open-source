@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+{% block head %}
+    <title>Set your profile picture - Coding for Kidz</title>
+    <style>
+        #videoElement, #canvas {
+            height:250px;
+            width:250px;
+            object-fit:cover;
+            border-radius: 50%;
+        }
+        #my_account {
+            border-bottom: 2.5px solid rgba(0,0,255,0.7);
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div><a href="/" style="color:black;">&larr; Return to home page</a></div>
+    <div style="text-align: center;"><h1>Change profile picture</h1></div>
+    <div style="text-align: center;"><video id="videoElement" class="camera_stream" autoplay="True"></video>
+        <br>
+        <canvas id='canvas'></canvas>
+        <br>
+        <button class="btn btn-primary" id="snap">Take photo</button>
+        <button class="btn btn-success" id="submit_image" hidden="true">Set as profile picture</button></div>
+    <script>
+        $(document).ready(function() {
+            var video = document.querySelector("#videoElement");
+            var imageDataURL;
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                    })
+                    .catch(function (err0r) {
+                        console.log("Something went wrong!");
+                    });
+            }
+            $("#snap").click(function (){
+                $("#submit_image").attr("hidden",false)
+                $("#snap").html("Retake photo")
+                var hidden_canvas = document.querySelector('#canvas'),
+                    video = document.querySelector('video.camera_stream'),
+                    image = document.querySelector('img.photo'),
+
+                    // Get the exact size of the video element.
+                    width = video.videoWidth,
+                    height = video.videoHeight,
+
+                    // Context object for working with the canvas.
+                    context = hidden_canvas.getContext('2d');
+
+                // Set the canvas to the same dimensions as the video.
+                hidden_canvas.width = width;
+                hidden_canvas.height = height;
+
+                // Draw a copy of the current frame from the video on the canvas.
+                context.drawImage(video, 0, 0, width, height);
+
+                // Get an image dataURL from the canvas.
+                imageDataURL = hidden_canvas.toDataURL('image/png');
+                // Set the dataURL as source of an image element, showing the captured photo.
+                image.setAttribute('src', imageDataURL);
+
+            })
+            $("#submit_image").click(function() {
+                $.ajax({
+                    method:"POST",
+                    contentType:"application/json",
+                    dataType:"json",
+                    url: "/setprofilepic",
+                    data: JSON.stringify({
+                        data_url: imageDataURL,
+                    }),
+                    success:function(response) {
+                        window.location.href = window.location.href.split("/")[0] + "//" + loc + "/user/" + {{ current_user.id }}
+                    }
+                })
+            })
+        })
+
+    </script>
+{% endblock %}

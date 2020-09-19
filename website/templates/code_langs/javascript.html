@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Test out Javascript code</title>
+    <link rel="stylesheet" href="../../static/css/code_editor.css">
+{% endblock %}
+{% block body %}
+    <div id="editor">function foo(items) {
+        var x = "Hello World";
+        return x;
+        }</div>
+
+    <script src="../../../src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/javascript");
+    </script>
+{% endblock %}

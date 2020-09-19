@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Staff Url list - Coding for kidz</title>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1>detailed list</h1>
+    <table style="width:100%"><tr><td>Endpoint                       Methods    </td><td>Rule</td></tr>
+<tr><td>    -----------------------------  ---------  --------------------------------------------</td></tr>
+<tr><td>    </td><td>/error_400                     GET        /400-test</td></tr>
+<tr><td>    </td><td>/error_404                     GET        /404-test</td></tr>
+<tr><td>    </td><td>/error_500                     GET        /500-test</td></tr>
+<tr><td>    _debug_toolbar.static          GET        </td><td>/_debug_toolbar/static/<path:filename></td></tr>
+<tr><td>    _debug_toolbar.static          GET        </td><td>/_debug_toolbar/static/<path:filename></td></tr>
+<tr><td>    about                          GET        </td><td>/about</td></tr>
+<tr><td>    access_lesson                  GET, POST  </td><td>/card/<lesson_id></td></tr>
+<tr><td>    articles                       GET        </td><td>/articles</td></tr>
+<tr><td>    change_profile                 GET        </td><td>/changeprofile</td></tr>
+<tr><td>    create_all                     GET        </td><td>/create-all</td></tr>
+<tr><td>    create_all                     GET        </td><td>/createall</td></tr>
+<tr><td>    debugtoolbar.save_template     POST       </td><td>/_debug_toolbar/views/template/<key>/save</td></tr>
+<tr><td>    debugtoolbar.save_template     POST       </td><td>/_debug_toolbar/views/template/<key>/save</td></tr>
+<tr><td>    debugtoolbar.sql_select        GET, POST  </td><td>/_debug_toolbar/views/sqlalchemy/sql_select</td></tr>
+<tr><td>    debugtoolbar.sql_select        GET, POST  </td><td>/_debug_toolbar/views/sqlalchemy/sql_select</td></tr>
+<tr><td>    debugtoolbar.sql_select        GET, POST  </td><td>/_debug_toolbar/views/sqlalchemy/sql_explain</td></tr>
+<tr><td>    debugtoolbar.sql_select        GET, POST  </td><td>/_debug_toolbar/views/sqlalchemy/sql_explain</td></tr>
+<tr><td>    debugtoolbar.template_editor   GET        </td><td>/_debug_toolbar/views/template/<key></td></tr>
+<tr><td>    debugtoolbar.template_editor   GET        </td><td>/_debug_toolbar/views/template/<key></td></tr>
+<tr><td>    debugtoolbar.template_preview  POST       </td><td>/_debug_toolbar/views/template/<key></td></tr>
+<tr><td>    debugtoolbar.template_preview  POST       </td><td>/_debug_toolbar/views/template/<key></td></tr>
+<tr><td>    drop_all                       GET        </td><td>/drop-all</td></tr>
+<tr><td>    drop_all                       GET        </td><td>/dropall</td></tr>
+<tr><td>    index                          GET        </td><td>/home</td></tr>
+<tr><td>    index                          GET        </td><td>/</td></tr>
+<tr><td>    javascript                     GET        </td><td>/code/javascript</td></tr>
+<tr><td>    learn                          GET        </td><td>/learn</td></tr>
+<tr><td>    projects                       GET        </td><td>/projects</td></tr>
+<tr><td>    refresh                        GET        </td><td>/refresh</td></tr>
+<tr><td>    report_page_not_found_error    GET, POST  </td><td>/page_not_found_error</td></tr>
+<tr><td>    set_pic                        GET        </td><td>/setpic</td></tr>
+<tr><td>    set_profile                    POST       </td><td>/setprofilepic</td></tr>
+<tr><td>    set_profile_about              POST       </td><td>/setprofileabout</td></tr>
+<tr><td>    staff.staff                    GET        </td><td>/</td></tr>
+<tr><td>    staff.staff                    GET        </td><td>/</td></tr>
+<tr><td>    staff.staff                    GET        </td><td>/</td></tr>
+<tr><td>    staff.staff                    GET        </td><td>/</td></tr>
+<tr><td>    staff.staff_urls               GET        </td><td>/urls</td></tr>
+<tr><td>    staff.staff_urls               GET        </td><td>/urls</td></tr>
+<tr><td>    staff.staff_urls               GET        </td><td>/urls</td></tr>
+<tr><td>    staff.staff_urls               GET        </td><td>/urls</td></tr>
+<tr><td>    static                         GET        </td><td>/static/<path:filename></td></tr>
+<tr><td>    test_code                      GET        </td><td>/test-code</td></tr>
+<tr><td>    test_code                      GET        </td><td>/testcode</td></tr>
+</table>
+
+
+
+{% endblock %}

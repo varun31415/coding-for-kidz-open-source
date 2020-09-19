@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Change your profile - The KidzRW</title>
+    <link rel="stylesheet" href="../static/css/change_profile.css">
+{% endblock %}
+{% block body %}
+    <form class="container">
+        <div style="text-align: center;"><h1>Change your profile...</h1></div>
+        <div style="text-align: center;"><img src="{{ User_profile.query.filter_by(user_id=current_user.id).first().image }}" id="profile_img"><br><a href="/setpic">Change profile picture</a></div>
+        <br>Change the description of yourself:<br>
+        <div style="text-align: center;"><textarea class="form-control" maxlength="700" id="about_textbox" rows="5" placeholder="Update the description of yourself...">{{ about }}</textarea></div>
+        <br><label>Change your grade:</label><br>
+        <div style="text-align: center"><input type="number" placeholder="{{ grade }}" maxlength="2"></div>
+        <br><label for="age">Change you age:</label><br>
+        <div style="text-align: center"><input id="age" type="number" maxlength="3" placeholder="{{ age }}"></div>
+        <br><label>Do you want only friends to view your age and grade?</label><br>
+        <div style="text-align: center"><input type="checkbox"></div>
+        <div style="text-align: center;"><span id="error"></span></div>
+        <div style="text-align: center;"><button class="btn btn-primary" id="save">Save Changes</button></div>
+    </form>
+
+{% endblock %}

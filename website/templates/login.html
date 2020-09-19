@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Sign In - Coding for Kidz</title>
+    <style>
+        #sign-in {
+            background-color: green;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <h1 class="heading-h1">Sign in</h1>
+    <form method="POST" autocomplete="on">
+        <div id="username-box">
+            <input name="username" id="username" value="{{username}}" onfocus="this.removeAttribute('readonly');" required>
+            <label>Username</label>
+        </div>
+        <div id="password-box">
+            <input type="password" value="{{password }}" name="password" onfocus="this.removeAttribute('readonly');" required>
+            <label>Password</label>
+        </div>
+        <button id="submit">Sign in</button>
+        <span id="error">{{error}}</span>
+        <a href="/forgot-password">Forgot my password</a>
+    </form>
+    <marquee direction="down" width="500" height="200" behavior="alternate">
+        <marquee behavior="alternate">
+            <p>If you do not have an account <a href="/sign-up">Sign up</a></p>
+        </marquee>
+    </marquee>
+{% endblock %}

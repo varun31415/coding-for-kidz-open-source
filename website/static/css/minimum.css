@@ -1,0 +1,15 @@
+#navbar {
+    background-color: #000000;
+    font-family: 'Roboto', sans-serif;
+    position: fixed; 
+    width: 100%;
+}
+.heading-h1 {
+    font-size: 6vh;
+    text-align: center; 
+}
+#body-content {
+    position: absolute; 
+    top: 56px;
+    width: 100vw; 
+}

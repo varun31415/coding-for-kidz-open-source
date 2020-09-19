@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Live Chat - Coding for Kidz</title>
+    <style>
+        {##sign-in {#}
+        {#    background-color: green;#}
+        {#}#}
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1 class="heading-h1">Live Chat</h1>
+    <p></p>
+    <form>
+        <label for="message">Message:</label>
+        <input id="message" type="text">
+    </form>
+    <script type="text/javascript" src="/jsbn.js"></script>
+    <script type="text/javascript" src="/jsbn2.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/prng4.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/rng.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/ec.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/sec.js"></script>
+    <script language="JavaScript">
+    <!--
+        type = "secp128r1";
+        qval = 0;
+        aval = ("0").toBigInteger();
+        bval = ("0").toBigInteger();
+        nval = "0";
+        gx = ("0").toBigInteger();
+        gy = ("0").toBigInteger();
+        r = 0;
+        function do_status(s) {
+
+            document.getElementById('status').innerHTML = s;
+        }
+        function do_method(s) {
+
+            document.getElementById('method').innerHTML = s;
+        }
+
+        function set_ec_params(name) {
+
+            if (name === "") name = type;
+            var c = getSECCurveByName(name);
+
+            var elm = document.getElementById('dec');
+            var qval = c.getCurve().getQ();
+
+            var aval = c.getCurve().getA().toBigInteger();
+
+            var bval = c.getCurve().getB().toBigInteger();
+
+            var nval = c.getN();
+
+            var gx = c.getG().getX().toBigInteger();
+            var gy = c.getG().getY().toBigInteger();
+
+            if (elm.checked === true) {
+
+                document.getElementById('q').innerHTML = qval.toString(16).toString();
+                document.getElementById('a').innerHTML = aval.toString(16).toString();
+                document.getElementById('b').innerHTML = bval.toString(16).toString();
+                document.getElementById('gx').innerHTML = gx.toString(16).toString();
+                document.getElementById('gy').innerHTML = gy.toString(16).toString();
+                document.getElementById('n').innerHTML = nval.toString(16).toString();
+            }
+            else {
+                document.getElementById('q').innerHTML = qval.toString();
+                document.getElementById('a').innerHTML = aval.toString();
+                document.getElementById('b').innerHTML = bval.toString();
+                document.getElementById('gx').innerHTML = gx.toString()
+                document.getElementById('gy').innerHTML = gy.toString();
+                document.getElementById('n').innerHTML = nval.toString();
+
+            }
+            // Changing EC params invalidates everything else
+            document.getElementById('alice_priv').innerHTML = "";
+            document.getElementById('bob_priv').innerHTML = "";
+            document.getElementById('alice_pub_x').innerHTML = "";
+            document.getElementById('alice_pub_y').innerHTML = "";
+            document.getElementById('bob_pub_x').innerHTML = "";
+            document.getElementById('bob_pub_y').innerHTML = "";
+            document.getElementById('alice_key_x').innerHTML = "";
+            document.getElementById('alice_key_y').innerHTML = "";
+            document.getElementById('bob_key_x').innerHTML = "";
+            document.getElementById('bob_key_y').innerHTML = "";
+
+            do_method("Using " + name + " EC parameters");
+        }
+
+        function set_secp128r1() {
+            set_ec_params("secp128r1");
+            type = "secp128r1";
+        }
+
+        function set_secp160k1() {
+            set_ec_params("secp160k1");
+            type = "secp160k1";
+        }
+
+        function set_secp160r1() {
+            set_ec_params("secp160r1");
+            type = "secp160r1";
+        }
+
+        function set_secp192k1() {
+            set_ec_params("secp192k1");
+            type = "secp192k1";
+        }
+
+        function set_secp192r1() {
+            set_ec_params("secp192r1");
+            type = "secp192r1";
+        }
+
+        function set_secp224r1() {
+            set_ec_params("secp224r1");
+            type = "secp224r1";
+        }
+
+        function set_secp256r1() {
+            set_ec_params("secp256r1");
+            type = "secp256r1";
+        }
+
+        var rng;
+
+        function do_init() {
+            if (qval === 0) set_secp160k1();
+            rng = new SecureRandom();
+        }
+
+        function get_curve() {
+
+            return new ECCurveFp(new BigInteger(qval.toString()),
+              aval,
+              bval);
+        }
+
+        function get_G(curve) {
+            return new ECPointFp(curve,
+              curve.fromBigInteger(gx),
+              curve.fromBigInteger(gy));
+        }
+
+        function pick_rand() {
+
+            var n1 = nval.subtract(BigInteger.ONE);
+
+            var r = new BigInteger(nval.bitLength(), rng);
+            return r.mod(n1).add(BigInteger.ONE);
+
+
+        }
+
+        function do_alice_rand() {
+
+            var r = pick_rand();
+
+            document.getElementById('alice_priv').innerHTML = r.toString();
+            document.getElementById('alice_pub_x').innerHTML = "";
+            document.getElementById('alice_pub_y').innerHTML = "";
+            document.getElementById('alice_key_x').innerHTML = "";
+            document.getElementById('alice_key_y').innerHTML = "";
+            document.getElementById('bob_key_x').innerHTML = "";
+            document.getElementById('bob_key_y').innerHTML = "";
+            do_status("Alice's random value generated");
+        }
+
+        function do_bob_rand() {
+            r = pick_rand();
+            document.getElementById('bob_priv').innerHTML = r.toString();
+            document.getElementById('bob_pub_x').innerHTML = "";
+            document.getElementById('bob_pub_y').innerHTML = "";
+            document.getElementById('alice_key_x').innerHTML = "";
+            document.getElementById('alice_key_y').innerHTML = "";
+            document.getElementById('bob_key_x').innerHTML = "";
+            document.getElementById('bob_key_y').innerHTML = "";
+            do_status("Bob's random value generated");
+        }
+
+        function do_alice_pub() {
+            if (document.getElementById('alice_priv').innerHTML.length == 0) {
+                alert("Please generate Alice's private value first");
+                return;
+            }
+            var before = new Date();
+            var curve = get_curve();
+
+            var G = get_G(curve);
+
+            var a = new BigInteger(document.getElementById('alice_priv').innerHTML);
+
+            var P = G.multiply(a);
+
+            var after = new Date();
+            document.getElementById('alice_pub_x').innerHTML = P.getX().toBigInteger().toString();
+            document.getElementById('alice_pub_y').innerHTML = P.getY().toBigInteger().toString();
+            document.getElementById('bob_key_x').innerHTML = "";
+            document.getElementById('bob_key_y').innerHTML = "";
+            do_status("Alice's public point computed in " + (after - before) + "ms");
+        }
+
+        function do_bob_pub() {
+            if (document.getElementById('bob_priv').innerHTML.length == 0) {
+                alert("Please generate Bob's private value first");
+                return;
+            }
+            var before = new Date();
+            var curve = get_curve();
+            var G = get_G(curve);
+            var a = new BigInteger(document.getElementById('bob_priv').innerHTML);
+            var P = G.multiply(a);
+            var after = new Date();
+            document.getElementById('bob_pub_x').innerHTML = P.getX().toBigInteger().toString();
+            document.getElementById('bob_pub_y').innerHTML = P.getY().toBigInteger().toString();
+            document.getElementById('alice_key_x').innerHTML = "";
+            document.getElementById('alice_key_y').innerHTML = "";
+            do_status("Bob's public point computed in " + (after - before) + "ms");
+        }
+
+        function do_alice_key() {
+            if (document.getElementById('alice_priv').innerHTML.length == 0) {
+                alert("Please generate Alice's private value first");
+                return;
+            }
+            if (document.getElementById('bob_pub_x').innerHTML.length == 0) {
+                alert("Please compute Bob's public value first");
+                return;
+            }
+            var before = new Date();
+            var curve = get_curve();
+            var P = new ECPointFp(curve,
+              curve.fromBigInteger(new BigInteger(document.getElementById('bob_pub_x').innerHTML)),
+              curve.fromBigInteger(new BigInteger(document.getElementById('bob_pub_y').innerHTML)));
+            var a = new BigInteger(document.getElementById('alice_priv').innerHTML);
+            var S = P.multiply(a);
+            var after = new Date();
+            document.getElementById('alice_key_x').innerHTML = S.getX().toBigInteger().toString();
+            document.getElementById('alice_key_y').innerHTML = S.getY().toBigInteger().toString();
+            do_status("Alice's key derived in " + (after - before) + "ms");
+        }
+
+        function do_bob_key() {
+            if (document.getElementById('bob_priv').innerHTML.length == 0) {
+                alert("Please generate Bob's private value first");
+                return;
+            }
+            if (document.getElementById('alice_pub_x').innerHTML.length == 0) {
+                alert("Please compute Alice's public value first");
+                return;
+            }
+            var before = new Date();
+            var curve = get_curve();
+            var P = new ECPointFp(curve,
+              curve.fromBigInteger(new BigInteger(document.getElementById('alice_pub_x').innerHTML)),
+              curve.fromBigInteger(new BigInteger(document.getElementById('alice_pub_y').innerHTML)));
+            var a = new BigInteger(document.getElementById('bob_priv').innerHTML);
+            var S = P.multiply(a);
+            var after = new Date();
+            document.getElementById('bob_key_x').innerHTML = S.getX().toBigInteger().toString();
+            document.getElementById('bob_key_y').innerHTML = S.getY().toBigInteger().toString();
+            do_status("Bob's key derived in " + (after - before) + "ms");
+        }
+        //-->
+    </script>
+{% endblock %}

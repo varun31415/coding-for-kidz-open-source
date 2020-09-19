@@ -1,0 +1,15 @@
+{% extends base.html %}
+{% block head %}
+    <title>{{ username }} - Coding for kidz</title>
+{% endblock %}
+{% block body %}
+<div class="sidebar">
+    <img id="profile-big" src="{{ User_profile.query.filter_by(user_id=user.id).first().image }}">
+    {{ username }}
+    {% if not (age == "") %}
+    <p>age</p>
+    {{ age }}
+    {% endif %}
+
+</div>
+{% endblock %}
