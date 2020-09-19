@@ -1,0 +1,33 @@
+{
+  "name": "coding-for-kidz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arihant2math/coding-for-kidz.git"
+  },
+  "author": "Ashwin Naren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arihant2math/coding-for-kidz/issues"
+  },
+  "homepage": "https://github.com/arihant2math/coding-for-kidz#readme",
+  "devDependencies": {
+
+    "@sentry/webpack-plugin": "^1.12.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "popper.js": "^1.16.1",
+    "react": "^16.13.1",
+    "jquery": "^3.5.1"
+  },
+    "engines": {
+    "node": "12.x"
+
+  }
+}
