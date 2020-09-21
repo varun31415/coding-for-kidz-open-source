@@ -5,13 +5,13 @@ Status:
 
 Application error
 ## website
-www.coding-for-kidz.herokuapp.com
+coding-for-kidz.herokuapp.com
 ### Staff site
-www.staff.coding-for-kidz.herokuapp.com
+staff.coding-for-kidz.herokuapp.com
 ### Mod site
-www.mod.coding-for-kidz.herokuapp.com
+mod.coding-for-kidz.herokuapp.com
 ### Admin site
-www.admin.coding-for-kidz.herokuapp.com
+admin.coding-for-kidz.herokuapp.com
 ## Programming Structure
 ### Views
 Common views are in views.py
